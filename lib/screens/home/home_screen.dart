@@ -20,7 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      
       body: currentIndex == 0
           ? const Home()
           : currentIndex == 2
@@ -36,73 +35,79 @@ class _HomeScreenState extends State<HomeScreen> {
         child: const Icon(CupertinoIcons.add),
       ),
       bottomNavigationBar: BottomAppBar(
-          elevation: 0,
-          child: SizedBox(
-            height: size.height * 0.08,
-            width: size.width,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                InkWell(
-                    radius: 40,
-                    onTap: () => setState(() {
-                          setState(() {
-                            currentIndex = 0;
-                          });
-                        }),
-                    child: Container(
-                      height: size.height * 0.08,
-                      width: size.width * 0.25,
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset("assets/images/home.svg",
-                          color: currentIndex == 0 ? kTextColor : Colors.grey),
-                    )),
-                InkWell(
-                    radius: 40,
-                    onTap: () => setState(() {
-                          setState(() {
-                            currentIndex = 1;
-                          });
-                        }),
-                    child: Container(
-                      height: size.height * 0.08,
-                      width: size.width * 0.25,
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset("assets/images/connection.svg",
-                          color: currentIndex == 1 ? const Color.fromRGBO(255, 146, 40, 1) : Colors.grey),
-                    )),
-                InkWell(
-                    radius: 40,
-                    onTap: () => setState(() {
-                          setState(() {
-                            currentIndex = 2;
-                          });
-                        }),
-                    child: Container(
-                      height: size.height * 0.08,
-                      width: size.width * 0.25,
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset("assets/images/chat.svg",
-                          color: currentIndex == 2 ? const Color.fromRGBO(255, 146, 40, 1) : Colors.grey),
-                    )),
-                InkWell(
-                    radius: 40,
-                    onTap: () => setState(() {
-                          setState(() {
-                            currentIndex = 3;
-                          });
-                        }),
-                    child: Container(
-                      height: size.height * 0.08,
-                      width: size.width * 0.25,
-                      alignment: Alignment.center,
-                      child: SvgPicture.asset("assets/images/save.svg",
-                          color: currentIndex == 3 ? const Color.fromRGBO(255, 146, 40, 1) : Colors.grey),
-                    )),
-              ],
-            ),
-          )),
+        elevation: 0,
+        child: SizedBox(
+          height: size.height * 0.08,
+          width: size.width,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                  radius: 40,
+                  onTap: () => setState(() {
+                        setState(() {
+                          currentIndex = 0;
+                        });
+                      }),
+                  child: Container(
+                    height: size.height * 0.08,
+                    width: size.width * 0.25,
+                    alignment: Alignment.center,
+                    child: SvgPicture.asset("assets/images/home.svg",
+                        color: currentIndex == 0 ? kTextColor : Colors.grey),
+                  )),
+              InkWell(
+                  radius: 40,
+                  onTap: () => setState(() {
+                        setState(() {
+                          currentIndex = 1;
+                        });
+                      }),
+                  child: Container(
+                    height: size.height * 0.08,
+                    width: size.width * 0.25,
+                    alignment: Alignment.center,
+                    child: SvgPicture.asset("assets/images/connection.svg",
+                        color: currentIndex == 1
+                            ? const Color.fromRGBO(255, 146, 40, 1)
+                            : Colors.grey),
+                  )),
+              InkWell(
+                  radius: 40,
+                  onTap: () => setState(() {
+                        setState(() {
+                          currentIndex = 2;
+                        });
+                      }),
+                  child: Container(
+                    height: size.height * 0.08,
+                    width: size.width * 0.25,
+                    alignment: Alignment.center,
+                    child: SvgPicture.asset("assets/images/chat.svg",
+                        color: currentIndex == 2
+                            ? const Color.fromRGBO(255, 146, 40, 1)
+                            : Colors.grey),
+                  )),
+              InkWell(
+                  radius: 40,
+                  onTap: () => setState(() {
+                        setState(() {
+                          currentIndex = 3;
+                        });
+                      }),
+                  child: Container(
+                    height: size.height * 0.08,
+                    width: size.width * 0.25,
+                    alignment: Alignment.center,
+                    child: SvgPicture.asset("assets/images/save.svg",
+                        color: currentIndex == 3
+                            ? const Color.fromRGBO(255, 146, 40, 1)
+                            : Colors.grey),
+                  )),
+            ],
+          ),
+        ),
+      ),
     );
   }
-
 }
