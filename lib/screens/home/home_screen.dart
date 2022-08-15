@@ -31,7 +31,56 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: kTextColor,
         elevation: 0,
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              builder: (context) {
+                return Container(
+                  padding: const EdgeInsets.only(top: 5),
+                  height: size.height * 0.13,
+                  width: size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Center(
+                        child: Container(
+                          height: 4,
+                          width: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: Colors.grey),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                            padding: const EdgeInsets.all(10),
+                            alignment: Alignment.centerLeft,
+                            width: size.width,
+                            height: size.height * 0.054,
+                            child: const Text(
+                              "As a worker",
+                              style: TextStyle(fontSize: 17),
+                            )),
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: Container(
+                            padding: const EdgeInsets.all(10),
+                            alignment: Alignment.centerLeft,
+                            width: size.width,
+                            height: size.height * 0.054,
+                            child: const Text(
+                              "As a finder worker",
+                              style: TextStyle(fontSize: 17),
+                            )),
+                      )
+                    ],
+                  ),
+                );
+              });
+        },
         child: const Icon(CupertinoIcons.add),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -43,7 +92,6 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               InkWell(
-                  radius: 40,
                   onTap: () => setState(() {
                         setState(() {
                           currentIndex = 0;
@@ -53,8 +101,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: size.height * 0.08,
                     width: size.width * 0.25,
                     alignment: Alignment.center,
-                    child: SvgPicture.asset("assets/images/home.svg",
-                        color: currentIndex == 0 ? kTextColor : Colors.grey),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/images/home.svg",
+                          color: currentIndex == 0 ? kTextColor : Colors.grey,
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        currentIndex == 0
+                            ? Container(
+                                height: 3,
+                                width: 3,
+                                decoration: BoxDecoration(
+                                    color: currentIndex == 0
+                                        ? kTextColor
+                                        : Colors.transparent,
+                                    shape: BoxShape.circle),
+                              )
+                            : const SizedBox()
+                      ],
+                    ),
                   )),
               InkWell(
                   radius: 40,
@@ -67,10 +136,31 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: size.height * 0.08,
                     width: size.width * 0.25,
                     alignment: Alignment.center,
-                    child: SvgPicture.asset("assets/images/connection.svg",
-                        color: currentIndex == 1
-                            ? const Color.fromRGBO(255, 146, 40, 1)
-                            : Colors.grey),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/images/connection.svg",
+                          color: currentIndex == 1
+                              ? const Color.fromRGBO(255, 146, 40, 1)
+                              : Colors.grey,
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        currentIndex == 1
+                            ? Container(
+                                height: 3,
+                                width: 3,
+                                decoration: BoxDecoration(
+                                    color: currentIndex == 1
+                                        ? const Color.fromRGBO(255, 146, 40, 1)
+                                        : Colors.transparent,
+                                    shape: BoxShape.circle),
+                              )
+                            : const SizedBox()
+                      ],
+                    ),
                   )),
               InkWell(
                   radius: 40,
@@ -83,31 +173,74 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: size.height * 0.08,
                     width: size.width * 0.25,
                     alignment: Alignment.center,
-                    child: SvgPicture.asset("assets/images/chat.svg",
-                        color: currentIndex == 2
-                            ? const Color.fromRGBO(255, 146, 40, 1)
-                            : Colors.grey),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset(
+                          "assets/images/chat.svg",
+                          color: currentIndex == 2
+                              ? const Color.fromRGBO(255, 146, 40, 1)
+                              : Colors.grey,
+                        ),
+                        const SizedBox(
+                          height: 4,
+                        ),
+                        currentIndex == 2
+                            ? Container(
+                                height: 3,
+                                width: 3,
+                                decoration: BoxDecoration(
+                                    color: currentIndex == 2
+                                        ? const Color.fromRGBO(255, 146, 40, 1)
+                                        : Colors.transparent,
+                                    shape: BoxShape.circle),
+                              )
+                            : const SizedBox()
+                      ],
+                    ),
                   )),
               InkWell(
-                  radius: 40,
-                  onTap: () => setState(() {
-                        setState(() {
-                          currentIndex = 3;
-                        });
-                      }),
-                  child: Container(
-                    height: size.height * 0.08,
-                    width: size.width * 0.25,
-                    alignment: Alignment.center,
-                    child: SvgPicture.asset("assets/images/save.svg",
+                radius: 40,
+                onTap: () => setState(() {
+                  setState(() {
+                    currentIndex = 3;
+                  });
+                }),
+                child: Container(
+                  height: size.height * 0.08,
+                  width: size.width * 0.25,
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/images/save.svg",
                         color: currentIndex == 3
                             ? const Color.fromRGBO(255, 146, 40, 1)
-                            : Colors.grey),
-                  )),
+                            : Colors.grey,
+                      ),
+                      const SizedBox(
+                        height: 4,
+                      ),
+                      currentIndex == 3
+                          ? Container(
+                              height: 3,
+                              width: 3,
+                              decoration: BoxDecoration(
+                                  color: currentIndex == 3
+                                      ? const Color.fromRGBO(255, 146, 40, 1)
+                                      : Colors.transparent,
+                                  shape: BoxShape.circle),
+                            )
+                          : const SizedBox()
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
-      ),
+      ), 
     );
   }
 }

@@ -1,5 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:job/constants/constants.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,151 +11,212 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool value = false;
+  final time = DateTime.now();
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-      extendBody: true,
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Theme.of(context).primaryColor,
-        title: const Text(
-          "Jobspot",
-        ),
         actions: [
-          Icon(
-            CupertinoIcons.bell,
-            size: 34,
-            color: Theme.of(context).primaryColor,
+          CircleAvatar(
+            child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                    "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60")),
           ),
           const SizedBox(
-            width: 6,
-          ),
-          Icon(
-            CupertinoIcons.search,
-            size: 34,
-            color: Theme.of(context).primaryColor,
-          ),
-          const SizedBox(
-            width: 10,
+            width: 15,
           )
         ],
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        toolbarHeight: 100,
+        shadowColor: Colors.transparent,
+        foregroundColor: kTextColor,
+        title: Text('''
+${time.hour >= 5 && time.hour <= 12 ? 'Hayrli tong' : time.hour >= 13 && time.hour <= 20 ? 'Hayrli kun' : 'Hayrli kech'}
+Orlando Diggs.'''),
       ),
-      drawer: drawer(context),
-      body: const Center(
-      child: Text("Home"),
-    ),
-    );
-  }
-
-
-  InkWell items(BuildContext context, IconData icon, String text) {
-    return InkWell(
-      focusColor: Theme.of(context).primaryColor,
-      onTap: () {},
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 30,
-            ),
-            const SizedBox(
-              width: 10,
-            ),
-            Text(
-              text,
-              style: const TextStyle(fontSize: 18),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-  Drawer drawer(BuildContext context) {
-    return Drawer(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          toolbarHeight: 80,
-          backgroundColor: Theme.of(context).primaryColor,
-          automaticallyImplyLeading: false,
-          titleSpacing: 25,
-          leading: const Icon(
-            Icons.account_circle_outlined,
-            size: 70,
-          ),
-          title: Column(
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Padding(
+          padding: const EdgeInsets.only(top:20.0, left: 12,right: 12),
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text(
-                "Maxamadjonov\nSamandar",
-                textAlign: TextAlign.left,
+            children: [
+              SizedBox(
+                height: 181,
+                width: size.width,
+                child: Stack(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      height: 181,
+                      width: size.width,
+                      decoration: BoxDecoration(
+                          color: kTextColor,
+                          borderRadius: BorderRadius.circular(6)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              Text(
+                                "50% off",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                              Text(
+                                "take any courses",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 18),
+                              ),
+                            ],
+                          ),
+                          ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                  primary:
+                                      const Color.fromRGBO(255, 146, 40, 1)),
+                              child: const Text("Join Now"))
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      top: 0,
+                      right: 30,
+                      child: Transform.scale(
+                          scale: 1.5,
+                          child: Image.asset(
+                            "assets/images/opa.png",
+                            height: 145,
+                          )),
+                    )
+                  ],
+                ),
               ),
-              Text(
-                "ID: 172623",
-                style: TextStyle(fontSize: 14),
+              const SizedBox(
+                height: 12,
+              ),
+              const Text(
+                "Find Your Job",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 12,
+              ), 
+              SizedBox(
+                height: 170,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      height: 170,
+                      alignment: Alignment.center,
+                      width: size.width * 0.42,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                        color: const Color.fromRGBO(175, 236, 254, 1),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/headhunting.png",
+                            width: 34,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "44.5k",
+                            style: TextStyle(
+                                color: kTextColor,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "Remote Job",
+                            style: TextStyle(
+                              color: kTextColor,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 170,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            height: 75,
+                            width: size.width * 0.45,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              color: const Color.fromRGBO(190, 175, 254, 1),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "66.8k",
+                                  style: TextStyle(
+                                      color: kTextColor,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "Full Time",
+                                  style: TextStyle(
+                                    color: kTextColor,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 75,
+                            width: size.width * 0.45,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              color: const Color.fromRGBO(255, 214, 173, 1),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "38.9k",
+                                  style: TextStyle(
+                                      color: kTextColor,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "Part Time",
+                                  style: TextStyle(
+                                    color: kTextColor,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                height: 500,
+                width: size.width,
+                color: Colors.black,
               )
             ],
           ),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            items(context, CupertinoIcons.settings, "Sozlamalar"),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: const [
-                      Icon(
-                        CupertinoIcons.moon_fill,
-                        size: 30,
-                      ),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "Tungi rejim",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                  CupertinoSwitch(
-                      value: value,
-                      onChanged: (v) {
-                        setState(() {
-                          value = v;
-                        });
-                      }),
-                ],
-              ),
-            ),
-          ],
-        ),
-        bottomNavigationBar: BottomAppBar(
-          elevation: 0,
-          child: Container(
-              padding: const EdgeInsets.only(left: 20, bottom: 10),
-              alignment: Alignment.centerLeft,
-              width: double.infinity,
-              height: 50,
-              child: Row(
-                children: const [
-                  Icon(Icons.info_outline),
-                  SizedBox(
-                    width: 6,
-                  ),
-                  Text(
-                    "Jobspot 1.0.0",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ],
-              )),
         ),
       ),
     );

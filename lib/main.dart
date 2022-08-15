@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:job/screens/auth/login/login.dart';
 import 'package:job/screens/home/home_screen.dart';
 import 'package:job/screens/onboarding/onbaording_screen.dart';
+import 'package:job/screens/onboarding/onboarding2.dart';
 import 'package:job/screens/splash/splash_page.dart';
 
 void main() {
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
         "/": (_) => const SplashPage(),
         HomeScreen.routeName: (_) => const HomeScreen(),
         LoginScreen.routeName: (_) => const LoginScreen(),
-        OnbardingScreen.routeName: (_) => const OnbardingScreen()
+        OnbardingScreen.routeName: (_) => const OnbardingScreen(),
+        Onboarding2.routeName : (_) => const Onboarding2()
       },
     );
   }
