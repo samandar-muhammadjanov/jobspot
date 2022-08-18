@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:job/constants/constants.dart';
 import 'package:job/screens/auth/login/login.dart';
+import 'package:job/screens/onboarding/onboarding2.dart';
 
 class OnbardingScreen extends StatefulWidget {
   const OnbardingScreen({Key? key}) : super(key: key);
@@ -14,6 +15,21 @@ class OnbardingScreen extends StatefulWidget {
 class _OnbardingScreenState extends State<OnbardingScreen> {
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> list = [
+      {
+        "text": "As Worker",
+        "onTap": () {
+          Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+        }
+      },
+      {
+        "text": "As Finder Worker",
+        "onTap": () {
+          Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+        }
+      }
+    ];
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -47,7 +63,7 @@ class _OnbardingScreenState extends State<OnbardingScreen> {
                           fontWeight: FontWeight.bold,
                           fontFamily: GoogleFonts.dmSans().fontFamily,
                           height: 1),
-                      children:  [
+                      children: [
                         const TextSpan(text: "Find Your\n"),
                         TextSpan(
                           text: "Dream Job\n",
@@ -56,7 +72,8 @@ class _OnbardingScreenState extends State<OnbardingScreen> {
                             color: kTextColor3,
                           ),
                         ),
-                        const TextSpan(text: "Here!", style: const TextStyle(height: 1.1)),
+                        const TextSpan(
+                            text: "Here!", style: TextStyle(height: 1.1)),
                       ],
                     ),
                   ),
@@ -72,19 +89,59 @@ class _OnbardingScreenState extends State<OnbardingScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).pushReplacementNamed(LoginScreen.routeName),
-                    child: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Theme.of(context).primaryColor),
-                      child: const Icon(
-                        Icons.arrow_forward,
-                        color: Colors.white,
+                  ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Scaffold(
+                            backgroundColor: Colors.transparent,
+                            body: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: list.map(
+                                  (e) {
+                                    return Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: InkWell(
+                                        onTap: e["onTap"],
+                                        child: Container(
+                                          width: double.infinity,
+                                          padding: EdgeInsets.all(
+                                              size.width * 0.043),
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: Colors.white,
+                                                  width: 3),
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Text(
+                                            e["text"],
+                                            textAlign: TextAlign.center,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 22,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ).toList(),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(60, 60),
+                      primary: Theme.of(context).primaryColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40),
                       ),
                     ),
+                    child: const Icon(Icons.arrow_forward),
                   )
                 ],
               )

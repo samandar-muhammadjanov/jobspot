@@ -20,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(229, 229, 229, 1),
       body: currentIndex == 0
           ? const Home()
           : currentIndex == 2
@@ -33,11 +34,14 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         onPressed: () {
           showModalBottomSheet(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20)
+            ),
               context: context,
               builder: (context) {
                 return Container(
                   padding: const EdgeInsets.only(top: 5),
-                  height: size.height * 0.13,
+                  height: size.height * 0.20,
                   width: size.width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

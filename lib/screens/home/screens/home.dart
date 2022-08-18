@@ -14,9 +14,44 @@ class _HomeState extends State<Home> {
   final time = DateTime.now();
   @override
   Widget build(BuildContext context) {
+    List<Map<String, dynamic>> list = [
+      {
+        "id": 0,
+        "image" : "assets/images/apple.svg",
+        "title": "Product Designer",
+        "subtitle": "Apple inc . California, USA",
+        "character": ["Senior designer", "Full time", "Apply"],
+        "price" : "15"
+      },
+      {
+        "id": 1,
+        "image" : "assets/images/apple.svg",
+        "title": "Software Engineer",
+        "subtitle": "Google inc . California, USA",
+        "character": ["Senior designer", "Full time", "Apply"],
+        "price" : "12"
+      },
+      {
+        "id": 2,
+        "image" : "assets/images/apple.svg",
+        "title": "Product Designer",
+        "subtitle": "Google inc . California, USA",
+        "character": ["Senior designer", "Full time", "Apply"],
+        "price" : "6"
+      },
+      {
+        "id": 3,
+        "image" : "assets/images/apple.svg",
+        "title": "Product Designer",
+        "subtitle": "Google inc . California, USA",
+        "character": ["Senior designer", "Full time", "Apply"],
+        "price" : "23"
+      }
+    ];
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           CircleAvatar(
             child: ClipRRect(
@@ -40,7 +75,7 @@ Orlando Diggs.'''),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.only(top:20.0, left: 12,right: 12),
+          padding: const EdgeInsets.only(top: 20.0, left: 12, right: 12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -106,7 +141,7 @@ Orlando Diggs.'''),
               ),
               const SizedBox(
                 height: 12,
-              ), 
+              ),
               SizedBox(
                 height: 170,
                 child: Row(
@@ -210,10 +245,78 @@ Orlando Diggs.'''),
                   ],
                 ),
               ),
-              Container(
-                height: 500,
-                width: size.width,
-                color: Colors.black,
+              const SizedBox(
+                height: 12,
+              ),
+              const Text(
+                "Recent Job List",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              SizedBox(
+                height: 400,
+                child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: list.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        color: Colors.white,
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              leading: CircleAvatar(
+                                backgroundColor: Colors.grey[300],
+                                child:
+                                    SvgPicture.asset(list[index]["image"]),
+                              ),
+                              title:  Text(list[index]["title"]),
+                              subtitle:
+                                   Text(list[index]["subtitle"]),
+                              trailing: SvgPicture.asset(
+                                "assets/images/save.svg",
+                                color: const Color.fromRGBO(82, 75, 107, 1),
+                              ),
+                            ),
+                            RichText(
+                              text: TextSpan(
+                                  style: TextStyle(
+                                    color: kTextColor,
+                                    fontSize: 16,
+                                  ),
+                                  children: [
+                                     TextSpan(
+                                        text: "\$${list[index]["price"]}K",
+                                        style:const TextStyle(
+                                            fontWeight: FontWeight.bold)),
+                                    TextSpan(
+                                        text: "/Mo",
+                                        style: TextStyle(color: kTextColor2)),
+                                  ]),
+                            ),
+                            SizedBox(
+                              height: 20,
+                              child: ListView.builder(
+                                itemCount: list[index]["character"].length,
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index){
+                                return Container(
+                                  child: Text(list[index]["character"][index]),
+                                );
+                              }),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
               )
             ],
           ),
